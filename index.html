@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>BeSomeone</title>
+  <link rel="icon" href="https://johstaging.blob.core.windows.net/media/global/images/2020/04/29/besomeone-logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;400;600;800&display=swap" rel="stylesheet">
+  <meta name="description" content="" />
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Lexend', sans-serif;
+  }
+
+  #containerWrapper {
+    width: 100%;
+    background-color: #e5e5e5;
+    background-image: url('https://res.cloudinary.com/dv2gvem0j/image/upload/v1630066639/Background_uynhzg.png');
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #headerContainer {
+    width: 100%;
+    height: 168px;
+    background-color: #EDF9FC;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  #logoMobile {
+    display: none;
+  }
+
+  #logoPc {
+    width: 897px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .button-style-pc {
+    outline: none;
+    background: #1AA69F;
+    color: #fff;
+    padding: 17px 20px 17px 20px;
+    border-radius: 9px;
+    border: 1px solid #1AA69F;
+    cursor: pointer;
+  }
+
+  .button-text-pc {
+    margin-right: 11px;
+    font-size: 18px;
+  }
+
+  .button-style-mobile {
+    display: none;
+  }
+
+  .button-text-mobile {
+    display: none;
+  }
+
+  #content {
+    padding: 2%;
+    width: 897px;
+    background: #FFF;
+    border-radius: 10px;
+    margin-top: 35px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.06);
+  }
+
+  ul.carousel-indicators {
+    position: absolute;
+    bottom: -70px;
+    margin-bottom: 32px;
+  }
+
+  .carousel-indicators li {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #1DC4BA;
+  }
+
+  .post-title {
+    color: #08726D;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 55px;
+    margin-bottom: 20px;
+  }
+
+  .tags {
+    border-top: 1px solid #979797;
+    border-bottom: 1px solid #979797;
+    padding: 9px 0;
+  }
+
+  .tags .description {
+    color: #464646;
+    margin-bottom: 0;
+    font-size: 12px;
+  }
+
+  .hashtag-wrapper-mobile {
+    display: none;
+  }
+
+  .hashtag-wrapper-pc {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+  }
+
+  .hashtag-wrapper-pc .hashtag {
+    color: #7468C0;
+    font-size: 10px;
+  }
+
+  .hashtag-wrapper-pc .hashtag-description {
+    cursor: pointer;
+    color: #999999;
+    font-size: 10px;
+  }
+
+  .votes {
+    display: flex;
+    margin: 23px 0;
+  }
+
+  .votes div {
+    margin-right: 17px;
+  }
+
+  span {
+    font-size: 10px;
+  }
+
+  .actions span {
+    color: #464646;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* .actions div {
+    margin-right: 32px;
+  } */
+
+  .footer {
+    width: 897px;
+    margin-top: 24px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .footer span {
+    color: #898A8D;
+  }
+
+  .footer span.link {
+    text-decoration: underline;
+  }
+
+  .modal.show .lab-modal-body {
+    bottom: 0;
+    opacity: 1;
+  }
+
+  .lab-modal-body {
+    position: absolute;
+    bottom: -250px;
+    margin: 150px auto 0;
+    padding: 40px;
+    width: 100%;
+    background-color: #FFF;
+    border-radius: 10px;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+    -moz-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+    -o-transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+    transition: opacity 0.3s ease-out, bottom 0.3s ease-out;
+  }
+
+  .modal-body-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-content-wrapper {
+    width: 897px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+
+  .modal-text {
+    font-size: 12px;
+    color: #464646;
+    text-align: center;
+  }
+
+  .column1 {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .column1 img {
+    margin-bottom: 10px;
+  }
+
+  .column3 {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+
+  }
+
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+  }
+
+  .close span {
+    font-size: 18px;
+    font-weight: normal;
+  }
+
+  .playstore {
+    cursor: pointer;
+    width: 286px;
+    height: 92px;
+    object-fit: cover;
+  }
+
+  .applestore {
+    cursor: pointer;
+    width: 286px;
+    height: 92px;
+    object-fit: cover;
+  }
+</style>
+
+<style>
+  /* @media all and (min-width: 1280px) {}
+
+  @media all and (min-width: 1024px) and (max-width: 1279px) {} */
+
+  @media all and (min-width: 768px) and (max-width: 1024px) {
+    #logoPc {
+      width: 668px;
+    }
+
+    #content {
+      width: 668px;
+    }
+
+    .footer {
+      width: 668px;
+    }
+  }
+
+  @media all and (max-width: 767px) {
+
+    #headerContainer {
+      width: 100%;
+      height: 98px;
+      background-color: #EDF9FC;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #logoMobile {
+      width: 345px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    #logoPc {
+      display: none;
+    }
+
+    .button-style-pc {
+      display: none;
+    }
+
+    .button-text-pc {
+      display: none;
+    }
+
+    .button-style-mobile {
+      display: flex;
+      outline: none;
+      background: #1AA69F;
+      color: #fff;
+      padding: 8px 13px 8px 13px;
+      border-radius: 9px;
+      border: 1px solid #1AA69F;
+      cursor: pointer;
+
+    }
+
+    .button-text-mobile {
+      display: flex;
+      font-size: 12px;
+      margin-right: 11px;
+    }
+
+    #content {
+      width: 345px;
+      padding: 0;
+    }
+
+    .post-title, .tags, .votes {
+      padding: 0 10px;
+    }
+
+    .hashtag-wrapper-mobile {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+
+    .hashtag-wrapper-mobile .hashtag {
+      color: #b9b3df;
+      font-size: 10px;
+    }
+
+    .hashtag-wrapper-mobile .hashtag-description {
+      cursor: pointer;
+      color: #464646;
+      font-size: 10px;
+    }
+
+    .hashtag-wrapper-pc {
+      display: none;
+    }
+
+    .actions {
+      padding: 0 20px;
+    }
+
+    .actions div {
+      margin-bottom: 14px;
+    }
+
+    .footer {
+      width: 345px;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+    }
+
+     .footer span {
+      margin-bottom: 26px;
+     }
+
+    .modal-content-wrapper {
+      width: 345px;
+      flex-direction: column;
+    }
+
+    .column1 {
+      width: 100%;
+    }
+
+    .column3 {
+      width: 100%;
+      align-items: center;
+    }
+
+    .playstore {
+      width: 142px;
+      height: 61px;
+    }
+
+    .applestore {
+      width: 142px;
+      height: 61px;
+    }
+  }
+
+  /* @media all and (max-width: 479px) {
+    #logoPc {
+      width: 100%;
+    }
+
+    #content {
+      width: 100%
+    }
+
+    .footer {
+      width: 100%
+    }
+  } */
+</style>
+
+<body>
+  <div class="modal" id="lab-slide-bottom-popup" data-keyboard="false" data-backdrop="true">
+    <div class="lab-modal-body">
+      <button type="button" class="close" data-dismiss="modal"><span>Close</span>
+      </button>
+      <div class="modal-body-content">
+        <div class="modal-content-wrapper">
+          <div class="column1">
+            <img
+              src="https://res.cloudinary.com/dv2gvem0j/image/upload/v1630054140/BeSomeone-app-icon-03_1_ymqpcp.png" />
+            <p class="modal-text">Making ourselves better <br /> so we can make the world better</p>
+          </div>
+          <div class="column3">
+            <img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png"
+              class="playstore"
+              onclick="window.open('https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id=app.besomeone&hl=en_IN', '_blank');" />
+            <img src="http://pluspng.com/img-png/download-on-app-store-png-download-1272.png" class="applestore"
+              onclick="window.open('https://apps.apple.com/us/app/besomeone/id1510909562?ls=1', '_blank');" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="containerWrapper" data-toggle="modal" data-target="#lab-slide-bottom-popup">
+    <div id="headerContainer">
+      <div id="logoMobile">
+        <img src="https://res.cloudinary.com/dv2gvem0j/image/upload/v1630041358/BeSomeone-logo-04_1_1_seen6m.png" />
+        <button class="button-style-mobile">
+          <span class="button-text-mobile">Download Now</span>
+          <img src="https://res.cloudinary.com/dv2gvem0j/image/upload/v1630057046/Group_331_1_nzcpbi.png" />
+        </button>
+      </div>
+      <div id="logoPc">
+        <img src="https://res.cloudinary.com/dv2gvem0j/image/upload/v1630040954/BeSomeone-logo-04_1_xpxneo.png" />
+        <button class="button-style-pc">
+          <span class="button-text-pc">Download Now</span>
+          <img src="https://res.cloudinary.com/dv2gvem0j/image/upload/v1630050197/Group_331_qz0ptu.png" />
+        </button>
+      </div>
+    </div>
+
+    <div id="content">
+      <div id="demo" class="carousel slide" data-ride="carousel">
+
+        <ul class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1"></li>
+          <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://res.cloudinary.com/dv2gvem0j/image/upload/v1630048115/study-group_o4cyin.png">
+          </div>
+          <div class="carousel-item">
+            <img src="https://res.cloudinary.com/dv2gvem0j/image/upload/v1630048115/study-group_o4cyin.png"
+              alt="Chicago">
+          </div>
+          <div class="carousel-item">
+            <img src="https://res.cloudinary.com/dv2gvem0j/image/upload/v1630048115/study-group_o4cyin.png"
+              alt="New York">
+          </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+          <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+          <span class="carousel-control-next-icon"></span>
+        </a>
+      </div>
+      <p class="post-title">Learn to create, publish and release original music to Spotify</p>
+      <div class="tags">
+        <p class="description">Healthy Eating, Curiosity, Imagination, Enterprising Entrepreneurship, Listening and
+          Speaking, Planning</p>
+          <div class="hashtag-wrapper-pc">
+              <span class="hashtag">#higher #maths #workspaced #arizona #besomeone #getsetup #collaborate #communicate
+                #animation</span>
+                <span class="hashtag-description">See More</span>
+          </div>
+
+          <div class="hashtag-wrapper-mobile">
+            <span class="hashtag">#higher #maths #workspaced #arizona #besomeone #getsetup #collaborate #communicate
+              #animation...<span style="color: #999999;">See More</span></span>
+          </div>
+      </div>
+      <div class="votes">
+        <div>
+          <img src="https://res.cloudinary.com/dv2gvem0j/image/upload/v1630049637/Vector_weu6nq.png" />
+          <span>55</span>
+        </div>
+        <div><img src="https://res.cloudinary.com/dv2gvem0j/image/upload/v1630049636/Vector_1_zegxl4.png" />
+          <span>55</span>
+        </div>
+        <div><img src="https://res.cloudinary.com/dv2gvem0j/image/upload/v1630066640/Add_to_Tracker_1_v7mahb.png" />
+          <span>55</span>
+        </div>
+      </div>
+      <div class="actions">
+        <div>
+          <img src="https://res.cloudinary.com/dv2gvem0j/image/upload/v1630050064/Interested_b6ancv.png" />
+          <span>Interested</span>
+        </div>
+        <div><img src="https://res.cloudinary.com/dv2gvem0j/image/upload/v1630050064/share_qbqwwe.png" />
+          <span>Promote</span>
+        </div>
+        <div><img src="https://res.cloudinary.com/dv2gvem0j/image/upload/v1630050064/Add_to_Tracker_azgicf.png" />
+          <span>Add to Tracker</span>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="footer">
+      <span>Talent Unbound PBC</span>
+      <span>BeSomeone, copyrights reserved</span>
+      <span class="link">Contact Us via Email</span>
+    </div>
+  </div>
+</body>
+
+</html>
